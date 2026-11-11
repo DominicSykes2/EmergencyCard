@@ -22,8 +22,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - name: Install Gradle
+        run: sudo apt-get update && sudo apt-get install -y gradle
+
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper --gradle-version 8.7
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
